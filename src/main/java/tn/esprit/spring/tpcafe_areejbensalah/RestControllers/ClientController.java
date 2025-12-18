@@ -12,9 +12,9 @@ import java.util.List;
 @AllArgsConstructor
 public class ClientController {
     private IClientService ClientService;
-    @GetMapping("getAll")
-    public List<Client> selectAllClient(){
-        return  ClientService.selectAllClient();
+    @GetMapping("/getAll")
+    public String selectAllClient(){
+        return  "hello";
     }
     @Operation(
             summary = "Créer une nouvelle commande",
