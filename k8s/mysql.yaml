@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mysql
+  namespace: devopsareej
 spec:
   replicas: 1
   selector:
@@ -15,6 +16,8 @@ spec:
       containers:
         - name: mysql
           image: mysql:8.0
+          ports:
+            - containerPort: 3306
           env:
             - name: MYSQL_ROOT_PASSWORD
               value: root
@@ -24,13 +27,12 @@ spec:
               value: cafe
             - name: MYSQL_PASSWORD
               value: cafe123
-          ports:
-            - containerPort: 3306
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: mysql-service
+  namespace: devopsareej
 spec:
   selector:
     app: mysql
