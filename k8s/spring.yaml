@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: spring-app
+  namespace: devopsareej
 spec:
   replicas: 2
   selector:
@@ -18,17 +19,24 @@ spec:
           ports:
             - containerPort: 8088
           env:
+            - name: SPRING_APPLICATION_NAME
+              value: TPCafe_Areejbensalah
             - name: SPRING_DATASOURCE_URL
               value: jdbc:mysql://mysql-service:3306/cafe_db?useSSL=false&allowPublicKeyRetrieval=true
             - name: SPRING_DATASOURCE_USERNAME
               value: cafe
             - name: SPRING_DATASOURCE_PASSWORD
               value: cafe123
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: update
+            - name: SPRING_JPA_DATABASE_PLATFORM
+              value: org.hibernate.dialect.MySQL8Dialect
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: spring-service
+  namespace: devopsareej
 spec:
   type: NodePort
   selector:
