@@ -17,9 +17,13 @@ spec:
           image: mysql:8.0
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: root123
+              value: root
             - name: MYSQL_DATABASE
-              value: springdb
+              value: cafe_db
+            - name: MYSQL_USER
+              value: cafe
+            - name: MYSQL_PASSWORD
+              value: cafe123
           ports:
             - containerPort: 3306
 ---
